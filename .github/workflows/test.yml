@@ -24,8 +24,8 @@ jobs:
     - name: Pull the docker image
       run: docker pull adarun/cicd_assignment:${GITHUB_REF##*/}
     - name: Test model
-        run: |
-          OUTPUT=$(docker run adarun/cicd_assignment:${GITHUB_REF##*/})
-          echo "Score:"
-          echo "$OUTPUT"
-          if [[ `echo "$OUTPUT 0.50" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
+      run: |
+        OUTPUT=$(docker run adarun/cicd_assignment:${GITHUB_REF##*/})
+        echo "Score:"
+        echo "$OUTPUT"
+        if [[ `echo "$OUTPUT 0.50" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
