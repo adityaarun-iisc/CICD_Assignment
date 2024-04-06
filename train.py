@@ -13,6 +13,7 @@ y = np.array([np.where(labels == x) for x in y]).flatten()
 rf = RandomForestClassifier()
 gb = GradientBoostingClassifier()
 
+# Adding a VotingClassifier classifier with multiple classifiers to boost the score.
 model = VotingClassifier(
     estimators=[
         ('rf', rf), 
