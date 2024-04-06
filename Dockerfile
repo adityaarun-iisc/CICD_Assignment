@@ -14,7 +14,7 @@ COPY requirements.txt /
 RUN pip3 install -r /requirements.txt
 
 # Copy the data and the scripts
-# COPY data/ /data/
+COPY data/ /data/
 COPY test.py /
 COPY train.py /
 
