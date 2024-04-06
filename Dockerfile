@@ -1,4 +1,4 @@
-FROM python:3.11-alpine
+FROM adarun/alpine-python3.11-sklearn:latest
 
 # Update the base image
 RUN apk update && apk upgrade --no-cache
