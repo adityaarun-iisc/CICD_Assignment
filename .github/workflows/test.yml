@@ -27,3 +27,21 @@ jobs:
         echo "Score:"
         echo "$OUTPUT"
         if [[ `echo "$OUTPUT 0.42" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
+    - name: Report tests check
+      if: ${{ github.event.inputs.used-branch && steps.tests-step.outcome }}
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          github.checks.create({
+            name: 'Test model',
+            head_sha: '${{ github.event.issue.pull_request.head.sha }}',
+            status: 'completed',
+            conclusion: '${{ steps.test.outcome }}',
+            output: {
+              title: 'Test model',
+              summary: 'Results: ${{ steps.test.outcome }}'
+            },
+            owner: context.repo.owner,
+            repo: context.repo.repo
+          })
