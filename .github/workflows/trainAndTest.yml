@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  train-model:
+  Train:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -22,8 +22,8 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Docker Push
       run: docker push adarun/cicd_assignment:${GITHUB_REF_NAME//[^a-zA-Z0-9]/_}
-  test-model:
-    needs: train-model
+  Test:
+    needs: Train
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
