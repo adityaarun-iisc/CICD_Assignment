@@ -15,7 +15,7 @@ gb = GradientBoostingClassifier()
 
 model = VotingClassifier(
     estimators=[
-        ('rf', rf), 
+        # ('rf', rf), 
         ('gb', gb)
     ],
 ).fit(X, y)
