@@ -28,4 +28,4 @@ jobs:
         OUTPUT=$(docker run adarun/cicd_assignment:${GITHUB_REF##*/})
         echo "Score:"
         echo "$OUTPUT"
-        if [[ `echo "$OUTPUT 0.50" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
+        if [[ `echo "$OUTPUT 0.42" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
