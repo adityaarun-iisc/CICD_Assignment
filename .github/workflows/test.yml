@@ -28,7 +28,7 @@ jobs:
         echo "$OUTPUT"
         if [[ `echo "$OUTPUT 0.42" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
     - name: Report tests check
-      if: ${{ github.event.inputs.used-branch && steps.tests-step.outcome }}
+      if: ${{ github.event.inputs.used-branch && steps.test.outcome }}
       uses: actions/github-script@v3
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
