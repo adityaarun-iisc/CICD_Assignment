@@ -25,3 +25,11 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Docker Push
       run: docker push adarun/cicd_assignment:${GITHUB_REF##*/}
+    - name: Trigger testing workflow
+      if: success()
+      uses: peter-evans/repository-dispatch@v3
+      with:
+        token: ${{ secrets.REPO_PAT }}
+        repository: ${{ github.repository }}
+        event-type: trigger-test
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
